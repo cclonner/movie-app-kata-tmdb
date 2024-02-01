@@ -1,15 +1,14 @@
-/* eslint-disable no-console */
 /* eslint-disable no-param-reassign */
 /* eslint-disable camelcase */
 import React, { useEffect } from 'react'
-import { Card, Typography, Row, Col, Progress, Rate, Tag, Spin } from 'antd'
+import { Card, Typography, Row, Col, Progress, Rate, Tag, Spin, Image } from 'antd'
 import { format } from 'date-fns'
 import { useState } from 'react'
 
 const { Paragraph } = Typography
 
 function MovieItem({ movie, genres, onRatingChange }) {
-  const [userRating, setUserRating] = useState(null)
+  const [userRating, setUserRating] = useState(movie.rating || null)
   const [loading, setLoading] = useState(true)
   useEffect(() => {
     if (movie) {
@@ -22,8 +21,8 @@ function MovieItem({ movie, genres, onRatingChange }) {
   }
 
   const { title, release_date, genre_ids, overview, poster_path, vote_average } = movie
-
-  // console.log(title, genre_ids)
+  // setUserRating(rating)
+  // console.log(movie)
 
   const genresMap = genres.reduce((map, g) => {
     map[g.id] = g.name
@@ -76,17 +75,20 @@ function MovieItem({ movie, genres, onRatingChange }) {
 
     return `${truncatedText}...`
   }
+  const posterSrc = poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : null
 
   return (
     <Card hoverable className="card">
       <Row gutter={[16, 16]}>
         <Col span={10}>
           <div className="image-container">
-            {poster_path ? (
-              <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} className="image" />
-            ) : (
-              <span>Постер не загружен</span>
-            )}
+            <Image
+              src={posterSrc}
+              alt={title}
+              placeholder
+              fallback="./placeholder.png"
+              style={{ minHeight: '280px', objectFit: 'cover' }}
+            />
           </div>
         </Col>
         <Col

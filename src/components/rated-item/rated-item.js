@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React, { useState, useEffect } from 'react'
 
 import MovieService from '../../services/API'
@@ -7,6 +8,7 @@ const api = new MovieService()
 
 function RatedItem({ guestSessionId }) {
   const [currentRatedMovies, setRatedMovies] = useState([])
+  console.log(currentRatedMovies)
 
   useEffect(() => {
     const fetchRatedMovies = async () => {
@@ -25,6 +27,14 @@ function RatedItem({ guestSessionId }) {
 
     fetchRatedMovies()
   }, [guestSessionId])
+
+  // const ratedMovies = currentRatedMovies.reduce((map, movie) => {
+  //   if (movie && movie.id && movie.rating) {
+  //     map[movie.id] = movie.rating
+  //   }
+  //   return map
+  // }, {})
+  // console.log(ratedMovies)
 
   return (
     <div>

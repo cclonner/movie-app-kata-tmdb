@@ -21,6 +21,7 @@ function App() {
   const [activeTab, setActiveTab] = useState('search')
   const [loading, setLoading] = useState(true)
   const [showAlert, setShowAlert] = useState(false)
+  // const [ratedMovies, setRatedMovies] = useState([])
 
   const tabs = [
     {
@@ -38,7 +39,7 @@ function App() {
       try {
         const genreList = await api.getGenreList()
         setGenres(genreList)
-        console.log('genreList', genreList)
+        // console.log('genreList', genreList)
       } catch (error) {
         console.log('Ошибка в получении жанров:', error.message)
       }
@@ -89,6 +90,7 @@ function App() {
   }
 
   const handleRatingChange = ({ movieId, rating }) => {
+    // setRatedMovies(rating)
     try {
       api.setMovieRate(movieId, guestSessionId, rating)
       // console.log(`Пользователь поставил фильму с ID ${movieId} рейтинг ${rating}`)
@@ -127,7 +129,12 @@ function App() {
             {activeTab === 'search' ? (
               <>
                 {movies.length > 0 ? (
-                  <MovieList movies={movies} genres={genres} onRatingChange={handleRatingChange} />
+                  <MovieList
+                    movies={movies}
+                    genres={genres}
+                    onRatingChange={handleRatingChange}
+                    // ratedMovies={ratedMovies}
+                  />
                 ) : (
                   <Alert
                     message="У вас нет оцененных фильмов"
