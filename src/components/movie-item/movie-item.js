@@ -22,7 +22,9 @@ function MovieItem({ movie, genres, onRatingChange }) {
   }
 
   const { title, release_date, genre_ids, overview, poster_path, vote_average } = movie
-  console.log(title, genre_ids)
+
+  // console.log(title, genre_ids)
+
   const genresMap = genres.reduce((map, g) => {
     map[g.id] = g.name
     return map
