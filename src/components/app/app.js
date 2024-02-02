@@ -66,7 +66,6 @@ function App() {
       setCurrentPage(page)
     } catch (error) {
       setShowAlert(true)
-      console.log('Ошибка в получении фильмов:', error.message)
     }
   }
 
@@ -127,8 +126,8 @@ function App() {
                   <MovieList movies={movies} genres={genres} onRatingChange={handleRatingChange} />
                 ) : (
                   <Alert
-                    message="У вас нет оцененных фильмов"
-                    description="Пожалуйста, оцените фильмы, чтобы они появились в этом разделе."
+                    message="Ошибка загруки фильмов"
+                    description="Пожалуйста, включите VPN, чтобы они появились в этом разделе."
                     type="info"
                     showIcon
                   />

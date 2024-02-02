@@ -8,15 +8,12 @@ const api = new MovieService()
 
 function RatedItem({ guestSessionId }) {
   const [currentRatedMovies, setRatedMovies] = useState([])
-  console.log(currentRatedMovies)
-
   useEffect(() => {
     const fetchRatedMovies = async () => {
       try {
         if (guestSessionId) {
           const ratedMoviesResult = await api.getRatedMovies(guestSessionId)
           setRatedMovies(ratedMoviesResult.results)
-          console.log('принял', ratedMoviesResult)
         } else {
           console.log('Гостевая сессия отсутствует.')
         }
