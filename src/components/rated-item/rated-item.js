@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import React, { useState, useEffect } from 'react'
+import { Alert } from 'antd'
 
 import MovieService from '../../services/API'
 import MovieList from '../movie-list'
@@ -27,8 +28,11 @@ function RatedItem({ guestSessionId }) {
 
   return (
     <div>
-      <h2>Оцененные фильмы</h2>
-      {currentRatedMovies.length > 0 ? <MovieList movies={currentRatedMovies} /> : <p>У вас нет оцененных фильмов</p>}
+      {currentRatedMovies.length > 0 ? (
+        <MovieList movies={currentRatedMovies} />
+      ) : (
+        <Alert message="Ошибка загруки фильмов" description="У вас нет оцененных фильмов" type="info" showIcon />
+      )}
     </div>
   )
 }

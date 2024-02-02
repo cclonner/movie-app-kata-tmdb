@@ -113,15 +113,15 @@ function App() {
         />
         <Content className="content center">
           <Spin spinning={loading}>
-            <Input
-              className="search-panel"
-              placeholder="Введите название..."
-              onPressEnter={handleSearch}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              value={searchTerm}
-            />
             {activeTab === 'search' ? (
               <>
+                <Input
+                  className="search-panel"
+                  placeholder="Введите название..."
+                  onPressEnter={handleSearch}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  value={searchTerm}
+                />
                 {movies.length > 0 ? (
                   <MovieList movies={movies} genres={genres} onRatingChange={handleRatingChange} />
                 ) : (
