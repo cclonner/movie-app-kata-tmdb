@@ -47,7 +47,6 @@ function MovieItem({ movie, genres, onRatingChange }) {
   }
 
   const movieRate = vote_average
-  console.log(movieRate)
   let movieRateColor
 
   if (movieRate >= 7) {
