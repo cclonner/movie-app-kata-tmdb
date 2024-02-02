@@ -28,14 +28,6 @@ function RatedItem({ guestSessionId }) {
     fetchRatedMovies()
   }, [guestSessionId])
 
-  // const ratedMovies = currentRatedMovies.reduce((map, movie) => {
-  //   if (movie && movie.id && movie.rating) {
-  //     map[movie.id] = movie.rating
-  //   }
-  //   return map
-  // }, {})
-  // console.log(ratedMovies)
-
   return (
     <div>
       <h2>Оцененные фильмы</h2>

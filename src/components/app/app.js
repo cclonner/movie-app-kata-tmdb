@@ -21,7 +21,6 @@ function App() {
   const [activeTab, setActiveTab] = useState('search')
   const [loading, setLoading] = useState(true)
   const [showAlert, setShowAlert] = useState(false)
-  // const [ratedMovies, setRatedMovies] = useState([])
 
   const tabs = [
     {
@@ -39,7 +38,6 @@ function App() {
       try {
         const genreList = await api.getGenreList()
         setGenres(genreList)
-        // console.log('genreList', genreList)
       } catch (error) {
         console.log('Ошибка в получении жанров:', error.message)
       }
@@ -49,7 +47,6 @@ function App() {
       try {
         const sessionId = await api.createGuestSession()
         setGuestSessionId(sessionId)
-        // console.log('создана гостевая сессия', sessionId)
       } catch (error) {
         console.log('Ошибка при создании гостевой сессии:', error.message)
       }
@@ -90,10 +87,8 @@ function App() {
   }
 
   const handleRatingChange = ({ movieId, rating }) => {
-    // setRatedMovies(rating)
     try {
       api.setMovieRate(movieId, guestSessionId, rating)
-      // console.log(`Пользователь поставил фильму с ID ${movieId} рейтинг ${rating}`)
     } catch (error) {
       console.log('Ошибка при установке рейтинга фильма:', error.message)
     }
@@ -129,12 +124,7 @@ function App() {
             {activeTab === 'search' ? (
               <>
                 {movies.length > 0 ? (
-                  <MovieList
-                    movies={movies}
-                    genres={genres}
-                    onRatingChange={handleRatingChange}
-                    // ratedMovies={ratedMovies}
-                  />
+                  <MovieList movies={movies} genres={genres} onRatingChange={handleRatingChange} />
                 ) : (
                   <Alert
                     message="У вас нет оцененных фильмов"

@@ -21,8 +21,6 @@ function MovieItem({ movie, genres, onRatingChange }) {
   }
 
   const { title, release_date, genre_ids, overview, poster_path, vote_average } = movie
-  // setUserRating(rating)
-  // console.log(movie)
 
   const genresMap = genres.reduce((map, g) => {
     map[g.id] = g.name
@@ -48,14 +46,15 @@ function MovieItem({ movie, genres, onRatingChange }) {
     formattedReleaseDate = 'Invalid Date'
   }
 
-  const movieRate = vote_average * 10
+  const movieRate = vote_average
+  console.log(movieRate)
   let movieRateColor
 
-  if (movieRate >= 70) {
+  if (movieRate >= 7) {
     movieRateColor = '#66E900'
-  } else if (movieRate >= 50) {
+  } else if (movieRate >= 5) {
     movieRateColor = '#E9D100'
-  } else if (movieRate >= 30) {
+  } else if (movieRate >= 3) {
     movieRateColor = '#E97E00'
   } else {
     movieRateColor = '#E90000'
@@ -124,7 +123,7 @@ function MovieItem({ movie, genres, onRatingChange }) {
             <Col span={4}>
               <Progress
                 type="dashboard"
-                percent={movieRate}
+                percent={movieRate * 10}
                 size={30}
                 format={(percent) => Math.round(percent * 10) / 100}
                 strokeColor={movieRateColor}

@@ -91,19 +91,3 @@ class MovieService {
 }
 
 export default MovieService
-
-// const movieService = new MovieService()
-// const movies = await movieService.getByKeyword('Napoleon', 1)
-// const genre = await movieService.getGenreList()
-// console.log('genres:', genre)
-// console.log('movie:', movies)
-// объект названий жанров по их id
-// const genreMap = genre.reduce((map, g) => {
-//   map[g.id] = g.name
-//   return map
-// }, {})
-// console.log('genreMap:', genreMap)
-
-// movies.results.forEach((movie) => {
-//   movie.genre_names = movie.genre_ids.map((id) => genreMap[id])
-// })
